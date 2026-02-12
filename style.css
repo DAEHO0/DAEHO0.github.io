@@ -1,1 +1,39 @@
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
 
+header {
+  background: white;
+  padding: 30px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #555;
+}
+
+main {
+  max-width: 700px;
+  margin: 50px auto;
+}
+
+article {
+  background: white;
+  padding: 25px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 14px;
+  color: #999;
+}
