@@ -42,3 +42,27 @@ footer {
   width: 100%;
   height: auto;
 }
+
+<!-- 이미지 슬라이더 추가 -->
+.image-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px 0;
+}
+
+.image-slider img {
+  height: 300px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+<!-- 이미지 스크롤바 추가 -->
+.image-slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.image-slider::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
