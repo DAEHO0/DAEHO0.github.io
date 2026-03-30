@@ -53,8 +53,9 @@ footer {
 
 .image-slider img {
   height: 300px;
-  border-radius: 10px;
+  width: auto;
   flex-shrink: 0;
+  border-radius: 10px;
 }
 
 <!-- 이미지 스크롤바 추가 -->
