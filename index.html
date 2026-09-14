@@ -1,331 +1,760 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
- <meta name="theme-color" content="#e8e7f4">
- <meta name="description" content="배우고, 만들고, 살아가는 날들. Daeho의 실습과 일상 기록.">
- <title>Daeho’s Diary</title>
- <link rel="stylesheet" href="style.css">
-<noscript><style>#daeho-preview [data-view][hidden]{display:block!important}#daeho-preview .dp-links,#daeho-preview .dp-action{display:none}</style></noscript>
-</head>
-<body>
-<div id="daeho-preview" aria-label="Daeho의 개인 웹사이트">
-  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
-  <nav class="dp-nav" aria-label="사이트 메뉴"><span class="dp-brand">Daeho’s Diary</span><div class="dp-links"><button type="button" data-page="home" aria-pressed="true">Home</button><button type="button" data-page="diary" aria-pressed="false">Diary</button><button type="button" data-page="about" aria-pressed="false">About</button></div></nav>
-  <main id="main-content">
-  <section class="page-section" data-view="home">
-    <div class="dp-heading"><span class="dp-kicker">A LITTLE SPACE OF MINE</span><h1>Small days, my story.</h1><p class="dp-sub">배우고, 만들고, 살아가는 날들의 기록.</p></div>
-    <div class="dp-grid">
-      <div class="dp-glass dp-feature"><span class="dp-date">LATEST ENTRY · 2026.08.28</span><h2>색안경이란<br>얼마나 편협한가</h2><button class="dp-action" data-page="diary" type="button">일기 읽기 ↗</button></div>
-      <div class="dp-glass"><div class="dp-monogram" aria-hidden="true">d.</div><span class="dp-date">HELLO, I’M DAEHO</span><p>조금씩 배우고,<br>직접 만들며 기록합니다.</p><div class="dp-pills"><span>실습</span><span>검도</span><span>일상</span></div></div>
-      <div class="dp-glass"><span class="dp-date">LEARNING BY DOING</span><h3>만들면서 배우는 중.</h3><p class="dp-small">용접부터 배관, 전기제어까지.<br>시행착오도 하나의 기록으로.</p></div>
-      <div class="dp-glass"><span class="dp-date">FROM THE DIARY · 07.23</span><h3>작은 시작, HVAC.</h3><p class="dp-small">라두이노 HVAC 만들기 첫 걸음</p><button class="dp-action" type="button" data-page="diary">기록 둘러보기 ↗</button></div>
-      <div class="dp-glass dp-bottom"><div><h3>하루하루, 차곡차곡.</h3><p class="dp-small">2026년의 기록을 시간순으로 만나보세요.</p></div><button class="dp-action" type="button" data-page="diary">전체 일기 →</button></div>
+  <head>
+    <!--
+    처음 수정할 때 읽어주세요
+    1. 이 파일과 style.css를 같은 폴더에 두고, 사진은 img 폴더에 보관하세요.
+    2. 글/자기소개/날짜/사진 경로는 이 HTML에서, 색/여백/크기는 style.css에서 수정합니다.
+    3. class, id, data-page, data-view는 디자인과 동작의 연결 이름이므로 유지하세요.
+    4. Home 카드 내용은 수동으로 관리합니다. 새 일기를 써도 자동으로 바뀌지 않습니다.
+    5. 파일을 백업한 뒤 수정하고 저장하세요. index.html을 브라우저에서 열어 확인할 수 있습니다.
+    -->
+    <!-- [1. 기본 정보] title은 브라우저 탭 이름, description은 사이트 설명입니다.
+    화면을 전환한 뒤의 탭 이름은 아래 JavaScript의 document.title에서 수정합니다. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#e8e7f4">
+    <meta name="description" content="배우고, 만들고, 살아가는 날들. Daeho의 실습과 일상 기록.">
+    <title>
+      Daeho’s Diary
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <noscript>
+      <style>
+        #daeho-preview [data-view][hidden]{display:block!important}#daeho-preview .dp-links,#daeho-preview .dp-action{display:none}
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <div id="daeho-preview" aria-label="Daeho의 개인 웹사이트">
+      <a class="skip-link" href="#main-content">
+        본문으로 건너뛰기
+      </a>
+      <!-- [2. 상단 메뉴] 사이트 이름과 Home / Diary / About 표시 글자를 수정하세요.
+      data-page 값은 아래 화면의 data-view 값과 연결되어 있으므로 유지하세요. -->
+      <nav class="dp-nav" aria-label="사이트 메뉴">
+        <span class="dp-brand">
+          Daeho’s Diary
+        </span>
+        <div class="dp-links">
+          <button type="button" data-page="home" aria-pressed="true">
+            Home
+          </button>
+          <button type="button" data-page="diary" aria-pressed="false">
+            Diary
+          </button>
+          <button type="button" data-page="about" aria-pressed="false">
+            About
+          </button>
+        </div>
+      </nav>
+      <main id="main-content">
+        <!-- [3. Home] 첫 화면의 소개 문구와 카드입니다. 카드 한 개는 dp-glass div 한 묶음입니다. -->
+        <section class="page-section" data-view="home">
+          <div class="dp-heading">
+            <span class="dp-kicker">
+              A LITTLE SPACE OF MINE
+            </span>
+            <h1>
+              Small days, my story.
+            </h1>
+            <p class="dp-sub">
+              배우고, 만들고, 살아가는 날들의 기록.
+            </p>
+          </div>
+          <div class="dp-grid">
+            <!-- [최근 일기 카드] 새 글을 올린 뒤 이 날짜와 제목도 직접 바꾸세요. -->
+            <div class="dp-glass dp-feature">
+              <span class="dp-date">
+                LATEST ENTRY · 2026.08.28
+              </span>
+              <h2>
+                색안경이란
+                <br>
+                얼마나 편협한가
+              </h2>
+              <button class="dp-action" data-page="diary" type="button">
+                일기 읽기 ↗
+              </button>
+            </div>
+            <div class="dp-glass">
+              <div class="dp-monogram" aria-hidden="true">
+                d.
+              </div>
+              <span class="dp-date">
+                HELLO, I’M DAEHO
+              </span>
+              <p>
+                조금씩 배우고,
+                <br>
+                직접 만들며 기록합니다.
+              </p>
+              <div class="dp-pills">
+                <span>
+                  실습
+                </span>
+                <span>
+                  검도
+                </span>
+                <span>
+                  일상
+                </span>
+              </div>
+            </div>
+            <div class="dp-glass">
+              <span class="dp-date">
+                LEARNING BY DOING
+              </span>
+              <h3>
+                만들면서 배우는 중.
+              </h3>
+              <p class="dp-small">
+                용접부터 배관, 전기제어까지.
+                <br>
+                시행착오도 하나의 기록으로.
+              </p>
+            </div>
+            <div class="dp-glass">
+              <span class="dp-date">
+                FROM THE DIARY · 07.23
+              </span>
+              <h3>
+                작은 시작, HVAC.
+              </h3>
+              <p class="dp-small">
+                라두이노 HVAC 만들기 첫 걸음
+              </p>
+              <button class="dp-action" type="button" data-page="diary">
+                기록 둘러보기 ↗
+              </button>
+            </div>
+            <div class="dp-glass dp-bottom">
+              <div>
+                <h3>
+                  하루하루, 차곡차곡.
+                </h3>
+                <p class="dp-small">
+                  2026년의 기록을 시간순으로 만나보세요.
+                </p>
+              </div>
+              <button class="dp-action" type="button" data-page="diary">
+                전체 일기 →
+              </button>
+            </div>
+          </div>
+        </section>
+        <!-- [4. Diary: 일기 추가 방법]
+        같은 달의 dp-entries 안에서 article 시작부터 /article 끝까지 복사하여 맨 위에 붙이세요.
+        time의 datetime(2026-08-28)과 화면 날짜(2026.08.28)를 함께 바꾸세요.
+        p 안이 본문입니다. 줄바꿈은 br 태그를 사용하세요.
+        사진은 img의 src를 img/파일이름.jpeg로 변경하고 alt에 사진 설명을 적으세요.
+        사진을 추가하려면 img 한 줄을 복사하세요. 사진이 없으면 image-slider div 묶음을 삭제하세요.
+        새로운 달은 dp-month와 바로 다음 dp-entries 묶음을 함께 복사해 가장 위에 추가하세요.
+        주의: 모든 시작 태그와 닫기 태그를 한 묶음으로 복사해야 레이아웃이 유지됩니다.
+        -->
+        <section class="page-section" data-view="diary" hidden>
+          <div class="dp-heading">
+            <span class="dp-kicker">
+              THE EVERYDAY ARCHIVE
+            </span>
+            <h1>
+              Days, collected.
+            </h1>
+            <p class="dp-sub">
+              평범한 날들도 모이면 나만의 이야기가 됩니다.
+            </p>
+          </div>
+          <div class="dp-timeline">
+            <!-- [월별 기록: 2026 / 08] 다음 dp-entries 안에 이 달의 일기를 넣으세요. -->
+            <div class="dp-month">
+              2026 / 08
+            </div>
+            <div class="dp-entries">
+              <!-- [일기 2026-08-28] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-08-28">
+                    2026.08.28
+                  </time>
+                </h2>
+                <p>
+                  색안경이란 얼마나 편협한가
+                </p>
+              </article>
+            </div>
+            <!-- [월별 기록: 2026 / 07] 다음 dp-entries 안에 이 달의 일기를 넣으세요. -->
+            <div class="dp-month">
+              2026 / 07
+            </div>
+            <div class="dp-entries">
+              <!-- [일기 2026-07-29] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-29">
+                    2026.07.29
+                  </time>
+                </h2>
+                <p>
+                  제에에에ㅔㅔㅔㅔ발 내일 누수 안 나게 해주세요
+                </p>
+              </article>
+              <!-- [일기 2026-07-28] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-28">
+                    2026.07.28
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.28 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260728_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.28 일기 사진 1">
+                  <img src="img/img_260728_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.28 일기 사진 2">
+                </div>
+                <p>
+                  치수 오차, 누수, 탈락6
+                </p>
+              </article>
+              <!-- [일기 2026-07-27] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-27">
+                    2026.07.27
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.27 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260727_pct.jpeg" loading="lazy" decoding="async" alt="2026.07.27 일기 사진 1">
+                  <img src="img/img_260727_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.27 일기 사진 2">
+                  <img src="img/img_260727_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.27 일기 사진 3">
+                </div>
+                <p>
+                  치수 오차, 누수 없음, 통과
+                </p>
+              </article>
+              <!-- [일기 2026-07-24] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-24">
+                    2026.07.24
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.24 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260724_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 1">
+                  <img src="img/img_260724_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 2">
+                  <img src="img/img_260724_prct3.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 3">
+                  <img src="img/img_260724_prct4.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 4">
+                </div>
+                <p>
+                  오전 오작, 치수 오류, 누수, 탈락4<br>
+                  오후 치수 오류로 오작, 누수 없음, 탈락5
+                </p>
+              </article>
+              <!-- [일기 2026-07-23] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-23">
+                    2026.07.23
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.23 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260723_radu.jpeg" loading="lazy" decoding="async" alt="2026.07.23 일기 사진 1">
+                </div>
+                <p>
+                  라두이노 HVAC 만들기 첫 걸음
+                </p>
+              </article>
+              <!-- [일기 2026-07-22] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-22">
+                    2026.07.22
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.22 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260722_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.22 일기 사진 1">
+                  <img src="img/img_260722_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.22 일기 사진 2">
+                </div>
+                <p>
+                  치수 오류, 누수, 탈락3
+                </p>
+              </article>
+              <!-- [일기 2026-07-21] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-21">
+                    2026.07.21
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.21 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260721_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.21 일기 사진 1">
+                  <img src="img/img_260721_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.21 일기 사진 2">
+                </div>
+                <p>
+                  치수 오류, 누수, 탈락2
+                </p>
+              </article>
+              <!-- [일기 2026-07-20] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-20">
+                    2026.07.20
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.20 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260720_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.20 일기 사진 1">
+                  <img src="img/img_260720_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.20 일기 사진 2">
+                </div>
+                <p>
+                  공조산기 작업형 준비하기
+                </p>
+              </article>
+              <!-- [일기 2026-07-14] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-14">
+                    2026.07.14
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.14 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260714_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.14 일기 사진 1">
+                  <img src="img/img_260714_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.14 일기 사진 2">
+                  <img src="img/img_260714_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.14 일기 사진 3">
+                </div>
+                <p>
+                  치수 오류, 누수, 탈락
+                </p>
+              </article>
+              <!-- [일기 2026-07-10] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-10">
+                    2026.07.10
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.10 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260710_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.10 일기 사진 1">
+                  <img src="img/img_260710_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.10 일기 사진 2">
+                </div>
+                <p>
+                  치수 못 맞춰서 이 모양ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
+                </p>
+              </article>
+              <!-- [일기 2026-07-09] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-07-09">
+                    2026.07.09
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.09 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260709_copr1.jpeg" loading="lazy" decoding="async" alt="2026.07.09 일기 사진 1">
+                  <img src="img/img_260709_copr2.jpeg" loading="lazy" decoding="async" alt="2026.07.09 일기 사진 2">
+                  <img src="img/img_260709_copr3.jpeg" loading="lazy" decoding="async" alt="2026.07.09 일기 사진 3">
+                </div>
+                <p>
+                  공조산기 실기 갈 길이 멀멀다
+                </p>
+              </article>
+            </div>
+            <!-- [월별 기록: 2026 / 06] 다음 dp-entries 안에 이 달의 일기를 넣으세요. -->
+            <div class="dp-month">
+              2026 / 06
+            </div>
+            <div class="dp-entries">
+              <!-- [일기 2026-06-08] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-06-08">
+                    2026.06.08
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.06.08 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260608_elect.jpeg" loading="lazy" decoding="async" alt="2026.06.08 일기 사진 1">
+                  <img src="img/img_260608_weld1.jpeg" loading="lazy" decoding="async" alt="2026.06.08 일기 사진 2">
+                  <img src="img/img_260608_weld2.jpeg" loading="lazy" decoding="async" alt="2026.06.08 일기 사진 3">
+                </div>
+                <p>
+                  아... 힘들다...
+                </p>
+              </article>
+            </div>
+            <!-- [월별 기록: 2026 / 05] 다음 dp-entries 안에 이 달의 일기를 넣으세요. -->
+            <div class="dp-month">
+              2026 / 05
+            </div>
+            <div class="dp-entries">
+              <!-- [일기 2026-05-11] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-05-11">
+                    2026.05.11
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.05.11 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260511_elect.jpeg" loading="lazy" decoding="async" alt="2026.05.11 일기 사진 1">
+                  <img src="img/img_260511_weld.jpeg" loading="lazy" decoding="async" alt="2026.05.11 일기 사진 2">
+                </div>
+                <p>
+                  전기제어실습 PB1을 눌렀는데 모터는 작동했으나 자기유지 실패...<br>
+                  3주만에 용접 실습, 연습을 거듭할수록 비드물이 고이는 상태가 보이기 시작했다.<br>
+                  공조냉동기계 산업기사, 산업안전 산업기사 취득 후 내년에 용접기능사 취득 하자
+                </p>
+              </article>
+            </div>
+            <!-- [월별 기록: 2026 / 04] 다음 dp-entries 안에 이 달의 일기를 넣으세요. -->
+            <div class="dp-month">
+              2026 / 04
+            </div>
+            <div class="dp-entries">
+              <!-- [일기 2026-04-23] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-04-23">
+                    2026.04.23
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.23 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260423_kendo.jpeg" loading="lazy" decoding="async" alt="2026.04.23 일기 사진 1">
+                </div>
+                <p>
+                  검도 1급을 향해
+                </p>
+              </article>
+              <!-- [일기 2026-04-21] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-04-21">
+                    2026.04.21
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.21 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260421_plmb.jpeg" loading="lazy" decoding="async" alt="2026.04.21 일기 사진 1">
+                </div>
+                <p>
+                  오늘 설비실습 시간에 배관 30분 여유 남기고 만들었지만 길이가 안 맞아서<br>
+                  점수가 까였다... 중간고사 끝나고 다시 나사산 깎을 예정...
+                </p>
+              </article>
+              <!-- [일기 2026-04-13] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-04-13">
+                    2026.04.13
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.13 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260413_weld.jpeg" loading="lazy" decoding="async" alt="2026.04.13 일기 사진 1">
+                  <img src="img/img_260413_elect.jpeg" loading="lazy" decoding="async" alt="2026.04.13 일기 사진 2">
+                </div>
+                <p>
+                  용접 너어어어어는 진짜아아아아아
+                </p>
+              </article>
+              <!-- [일기 2026-04-07] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-04-07">
+                    2026.04.07
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.07 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260408_fac.jpeg" loading="lazy" decoding="async" alt="2026.04.07 일기 사진 1">
+                </div>
+                <p>
+                  설비기초 실습 연습, 3시간 동안 파이프 도면을 완성하지 못했다.<br>
+                  알아둘 점<br>
+                  1. 엘보 이경티 사이 파이프 길이 + 3mm<br>
+                  2. 파이프 양 끝 한 쪽은 나사산 2개 남기고 다른 한 쪽은 3개 남길 것
+                </p>
+              </article>
+              <!-- [일기 2026-04-07] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-04-07">
+                    2026.04.07
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.07 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260407_fac.jpeg" loading="lazy" decoding="async" alt="2026.04.07 일기 사진 1">
+                  <img src="img/img_260407_fac2.jpeg" loading="lazy" decoding="async" alt="2026.04.07 일기 사진 2">
+                </div>
+                <p>
+                  설비기초 실습 시간, 2시간 제한 시간 안에 엘보와 이경티가 결합된 파이프를 만들지 못했다.<br>
+                  오후 1시간 공강 때 한 번 더 만들었으나 어째서인지 치수가 잘 안 맞는다.<br>
+                  명심해야 할 점<br>
+                  1. 밀링 선반 마다 나사 구경 차이가 있으므로 정사이즈보다 살짝 더 올려서 나사산을 깎을 것<br>
+                  2. 엘보와 이경티 내경 차이가 있을 수 있으므로 최대한 맞는 배관 부속을 찾을 것<br>
+                  3. 기칠운삼
+                </p>
+              </article>
+              <!-- [일기 2026-04-06] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-04-06">
+                    2026.04.06
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.06 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260406_weld.jpeg" loading="lazy" decoding="async" alt="2026.04.06 일기 사진 1">
+                  <img src="img/img_260406_elect.jpeg" loading="lazy" decoding="async" alt="2026.04.06 일기 사진 2">
+                </div>
+                <p>
+                  용접: 조질게~
+                </p>
+              </article>
+              <!-- [일기 2026-04-01] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-04-01">
+                    2026.04.01
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.01 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260401_poly.jpeg" loading="lazy" decoding="async" alt="2026.04.01 일기 사진 1">
+                </div>
+                <p>
+                  마지막 참인 폴리텍 시간, A4 용지로 롤러코스터를 만들었다.<br>
+                  탁구공이 책상까지 내려오는데 6초 남짓. 야매로 만들었지만 집단 지성의 힘을 보았다.
+                </p>
+              </article>
+            </div>
+            <!-- [월별 기록: 2026 / 03] 다음 dp-entries 안에 이 달의 일기를 넣으세요. -->
+            <div class="dp-month">
+              2026 / 03
+            </div>
+            <div class="dp-entries">
+              <!-- [일기 2026-03-31] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-03-31">
+                    2026.03.31
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.31 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260331_prct.jpeg" loading="lazy" decoding="async" alt="2026.03.31 일기 사진 1">
+                </div>
+                <p>
+                  설비 실습 시간 25A 3/4/5/6cm 나사산 파이프를 만들었다.<br>
+                  엘보 이음쇠에 잘 들어갔다. 실습 시간은 생각하고 행동하는 것이 중요.
+                </p>
+              </article>
+              <!-- [일기 2026-03-30] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-03-30">
+                    2026.03.30
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.30 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260330_weld1.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 1">
+                  <img src="img/img_260330_weld2.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 2">
+                  <img src="img/img_260330_weld3.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 3">
+                  <img src="img/img_260330_weld4.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 4">
+                  <img src="img/img_260330_weld5.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 5">
+                  <img src="img/img_260330_elct.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 6">
+                </div>
+                <p>
+                  "수많은 작은 유향 방울들이 동일한 제단 위에 떨어진다. 어떤 것들은 거기에 먼저 도착하고, 어떤 것들은 나중에<br>
+                  도착하지만, 차이는 없다." -마르쿠스 아우렐리우스-
+                </p>
+              </article>
+              <!-- [일기 2026-03-23] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-03-23">
+                    2026.03.23
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.23 사진 모음 (가로 스크롤)">
+                  <img src="img/img_260323_weld.jpeg" loading="lazy" decoding="async" alt="2026.03.23 일기 사진 1">
+                  <img src="img/img_260323_elect.jpeg" loading="lazy" decoding="async" alt="2026.03.23 일기 사진 2">
+                </div>
+                <p>
+                  두번째 아크 용접 실습 생각보다 섬세한 손놀림이 필요해서 쉽지 않다.<br>
+                  하지만 계속 연습하다 보면 때깔 좀 나겠지. 전기 제어 실습도 집중해서 수업에 참여했다.<br>
+                  그리고 오늘 아침에 학교 식당에서 교수님이 수줍게 인사하셔서 너무 귀여우셨다는ㅋㅋㅋ
+                </p>
+              </article>
+              <!-- [일기 2026-03-20] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry post">
+                <img src="img/img_CAD.jpeg" class="post-image" loading="lazy" decoding="async" alt="2026.03.20 일기 사진 1">
+                <div class="post-content">
+                  <h2>
+                    <time datetime="2026-03-20">
+                      2026.03.20
+                    </time>
+                  </h2>
+                  <p>
+                    오늘 CAD 실습 시간에 오토캐드 첫 과제를 했다. 아직까지 할 만한 듯
+                  </p>
+                </div>
+              </article>
+              <!-- [일기 2026-03-19] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-03-19">
+                    2026.03.19
+                  </time>
+                </h2>
+                <p>
+                  오늘 동아리 활동 신청하려 했으나 학과장교수님의 현장 실습에 참여 예정이라<br>
+                  자격증 공부 + 동아리 활동까지 하기엔 집중이 분산될 것 같아 신청하지 않았다.<br>
+                  그리고 한양대학교 졸업생 평균 자격증 취득 개수가 기사 자격증 3개라는 말에 전의를 상실했다. <br>
+                  난 어떻게 살아가야하나?
+                </p>
+              </article>
+              <!-- [일기 2026-03-16] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-03-16">
+                    2026.03.16
+                  </time>
+                </h2>
+                <p>
+                  오늘 처음 용접 실습을 했다. 아크 발생시키는게 너무 빡세다. <br>
+                  남들은 아크 잘 일으키는데 나만 안 됨. 그래도 용접 실습이 제일 흥미롭다.
+                </p>
+              </article>
+              <!-- [일기 2026-03-08] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-03-08">
+                    2026.03.08
+                  </time>
+                </h2>
+                <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.08 사진 모음 (가로 스크롤)">
+                  <img src="img/img_DQP.jpeg" loading="lazy" decoding="async" alt="2026.03.08 일기 사진 1">
+                  <img src="img/img_DQP2.jpeg" loading="lazy" decoding="async" alt="2026.03.08 일기 사진 2">
+                </div>
+                <p>
+                  더블쿼터파운더치즈 with BBQ
+                </p>
+              </article>
+              <!-- [일기 2026-03-07] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry post">
+                <img src="img/img_YAK502G.jpeg" class="post-image" loading="lazy" decoding="async" alt="2026.03.07 일기 사진 1">
+                <div class="post-content">
+                  <h2>
+                    <time datetime="2026-03-07">
+                      2026.03.07
+                    </time>
+                  </h2>
+                  <p>
+                    오늘 용접 실습에 실습에 의한 실습을 위해 산 작업복과 안전화가 왔다.<br>
+                    자 이제 시작이야 내 꿈을 위한 여행 피카츄
+                  </p>
+                </div>
+              </article>
+            </div>
+            <!-- [월별 기록: 2026 / 02] 다음 dp-entries 안에 이 달의 일기를 넣으세요. -->
+            <div class="dp-month">
+              2026 / 02
+            </div>
+            <div class="dp-entries">
+              <!-- [일기 2026-02-15] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry post">
+                <img src="img/img_0012.jpeg" class="post-image" loading="lazy" decoding="async" alt="2026.02.15 일기 사진 1">
+                <div class="post-content">
+                  <h2>
+                    <time datetime="2026-02-15">
+                      2026.02.15
+                    </time>
+                  </h2>
+                  <p>
+                    하 씨발... 개인 사이트 만들기 졸라 빡세네
+                  </p>
+                </div>
+              </article>
+              <!-- [일기 2026-02-13] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-02-13">
+                    2026.02.13
+                  </time>
+                </h2>
+                <p>
+                  앞으로 어떻게 해야할지 막막하다...
+                </p>
+              </article>
+              <!-- [일기 2026-02-12] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-02-12">
+                    2026.02.12
+                  </time>
+                </h2>
+                <p>
+                  오늘은 나만의 블로그를 꾸미기 시작했다.
+                </p>
+              </article>
+              <!-- [일기 2026-02-11] 아래 article 전체가 한 개의 글입니다. -->
+              <article class="dp-glass dp-entry">
+                <h2>
+                  <time datetime="2026-02-11">
+                    2026.02.11
+                  </time>
+                </h2>
+                <p>
+                  GitHub Pages 404를 해결했다. 존1나게 뿌듯하다.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+        <!-- [5. About] 이름, 자기소개, 관심사(dp-pills의 span)를 자유롭게 수정하세요. -->
+        <section class="page-section" data-view="about" hidden>
+          <div class="dp-heading">
+            <span class="dp-kicker">
+              A BIT ABOUT ME
+            </span>
+            <h1>
+              Hello, I’m Daeho.
+            </h1>
+          </div>
+          <div class="dp-glass">
+            <h3>
+              배우고 만드는 일상을 기록합니다.
+            </h3>
+            <p>
+              용접, 설비, 전기제어 실습의 시행착오부터
+              <br>
+              검도와 소소한 일상까지.
+            </p>
+            <div class="dp-pills">
+              <span>
+                용접 · 설비
+              </span>
+              <span>
+                자격증 준비
+              </span>
+              <span>
+                검도
+              </span>
+            </div>
+          </div>
+        </section>
+      </main>
+      <!-- [6. 하단] 연도, 이름, 짧은 문구를 수정하세요. -->
+      <footer>
+        <span>
+          © 2026 Daeho
+        </span>
+        <span>
+          하루하루, 차곡차곡.
+        </span>
+      </footer>
     </div>
-  </section>
-  <section class="page-section" data-view="diary" hidden>
-    <div class="dp-heading"><span class="dp-kicker">THE EVERYDAY ARCHIVE</span><h1>Days, collected.</h1><p class="dp-sub">평범한 날들도 모이면 나만의 이야기가 됩니다.</p></div>
-<div class="dp-timeline"><div class="dp-month">2026 / 08</div><div class="dp-entries"><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-08-28">2026.08.28</time></h2>
-    <p>
-      색안경이란 얼마나 편협한가
-    </p>
-  </article></div><div class="dp-month">2026 / 07</div><div class="dp-entries"><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-29">2026.07.29</time></h2>
-    <p>
-      제에에에ㅔㅔㅔㅔ발 내일 누수 안 나게 해주세요
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-28">2026.07.28</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.28 사진 모음 (가로 스크롤)">
-      <img src="img/img_260728_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.28 일기 사진 1">
-      <img src="img/img_260728_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.28 일기 사진 2">
-    </div>
-    <p>
-      치수 오차, 누수, 탈락6
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-27">2026.07.27</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.27 사진 모음 (가로 스크롤)">
-      <img src="img/img_260727_pct.jpeg" loading="lazy" decoding="async" alt="2026.07.27 일기 사진 1">
-      <img src="img/img_260727_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.27 일기 사진 2">
-      <img src="img/img_260727_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.27 일기 사진 3">
-    </div>
-    <p>
-      치수 오차, 누수 없음, 통과
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-24">2026.07.24</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.24 사진 모음 (가로 스크롤)">
-      <img src="img/img_260724_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 1">
-      <img src="img/img_260724_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 2">
-      <img src="img/img_260724_prct3.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 3">
-      <img src="img/img_260724_prct4.jpeg" loading="lazy" decoding="async" alt="2026.07.24 일기 사진 4">
-    </div>
-    <p>
-      오전 오작, 치수 오류, 누수, 탈락4<br>
-      오후 치수 오류로 오작, 누수 없음, 탈락5
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-23">2026.07.23</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.23 사진 모음 (가로 스크롤)">
-      <img src="img/img_260723_radu.jpeg" loading="lazy" decoding="async" alt="2026.07.23 일기 사진 1">
-    </div>
-    <p>
-      라두이노 HVAC 만들기 첫 걸음
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-22">2026.07.22</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.22 사진 모음 (가로 스크롤)">
-      <img src="img/img_260722_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.22 일기 사진 1">
-      <img src="img/img_260722_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.22 일기 사진 2">
-    </div>
-    <p>
-      치수 오류, 누수, 탈락3
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-21">2026.07.21</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.21 사진 모음 (가로 스크롤)">
-      <img src="img/img_260721_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.21 일기 사진 1">
-      <img src="img/img_260721_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.21 일기 사진 2">
-    </div>
-    <p>
-      치수 오류, 누수, 탈락2
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-20">2026.07.20</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.20 사진 모음 (가로 스크롤)">
-      <img src="img/img_260720_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.20 일기 사진 1">
-      <img src="img/img_260720_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.20 일기 사진 2">
-    </div>
-    <p>
-      공조산기 작업형 준비하기
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-14">2026.07.14</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.14 사진 모음 (가로 스크롤)">
-      <img src="img/img_260714_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.14 일기 사진 1">
-      <img src="img/img_260714_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.14 일기 사진 2">
-      <img src="img/img_260714_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.14 일기 사진 3">
-    </div>
-    <p>
-      치수 오류, 누수, 탈락
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-10">2026.07.10</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.10 사진 모음 (가로 스크롤)">
-      <img src="img/img_260710_prct1.jpeg" loading="lazy" decoding="async" alt="2026.07.10 일기 사진 1">
-      <img src="img/img_260710_prct2.jpeg" loading="lazy" decoding="async" alt="2026.07.10 일기 사진 2">
-    </div>
-    <p>
-      치수 못 맞춰서 이 모양ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-07-09">2026.07.09</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.07.09 사진 모음 (가로 스크롤)">
-      <img src="img/img_260709_copr1.jpeg" loading="lazy" decoding="async" alt="2026.07.09 일기 사진 1">
-      <img src="img/img_260709_copr2.jpeg" loading="lazy" decoding="async" alt="2026.07.09 일기 사진 2">
-      <img src="img/img_260709_copr3.jpeg" loading="lazy" decoding="async" alt="2026.07.09 일기 사진 3">
-    </div>
-    <p>
-      공조산기 실기 갈 길이 멀멀다
-    </p>
-  </article></div><div class="dp-month">2026 / 06</div><div class="dp-entries"><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-06-08">2026.06.08</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.06.08 사진 모음 (가로 스크롤)">
-      <img src="img/img_260608_elect.jpeg" loading="lazy" decoding="async" alt="2026.06.08 일기 사진 1">
-      <img src="img/img_260608_weld1.jpeg" loading="lazy" decoding="async" alt="2026.06.08 일기 사진 2">
-      <img src="img/img_260608_weld2.jpeg" loading="lazy" decoding="async" alt="2026.06.08 일기 사진 3">
-    </div>
-    <p>
-      아... 힘들다...
-    </p>
-  </article></div><div class="dp-month">2026 / 05</div><div class="dp-entries"><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-05-11">2026.05.11</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.05.11 사진 모음 (가로 스크롤)">
-      <img src="img/img_260511_elect.jpeg" loading="lazy" decoding="async" alt="2026.05.11 일기 사진 1">
-      <img src="img/img_260511_weld.jpeg" loading="lazy" decoding="async" alt="2026.05.11 일기 사진 2">
-    </div>
-    <p>
-      전기제어실습 PB1을 눌렀는데 모터는 작동했으나 자기유지 실패...<br>
-      3주만에 용접 실습, 연습을 거듭할수록 비드물이 고이는 상태가 보이기 시작했다.<br>
-      공조냉동기계 산업기사, 산업안전 산업기사 취득 후 내년에 용접기능사 취득 하자
-    </p>
-  </article></div><div class="dp-month">2026 / 04</div><div class="dp-entries"><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-04-23">2026.04.23</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.23 사진 모음 (가로 스크롤)">
-      <img src="img/img_260423_kendo.jpeg" loading="lazy" decoding="async" alt="2026.04.23 일기 사진 1">
-    </div>
-    <p>
-      검도 1급을 향해
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-04-21">2026.04.21</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.21 사진 모음 (가로 스크롤)">
-      <img src="img/img_260421_plmb.jpeg" loading="lazy" decoding="async" alt="2026.04.21 일기 사진 1">
-    </div>
-    <p>
-      오늘 설비실습 시간에 배관 30분 여유 남기고 만들었지만 길이가 안 맞아서<br>
-      점수가 까였다... 중간고사 끝나고 다시 나사산 깎을 예정...
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-04-13">2026.04.13</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.13 사진 모음 (가로 스크롤)">
-      <img src="img/img_260413_weld.jpeg" loading="lazy" decoding="async" alt="2026.04.13 일기 사진 1">
-      <img src="img/img_260413_elect.jpeg" loading="lazy" decoding="async" alt="2026.04.13 일기 사진 2">
-    </div>
-    <p>
-      용접 너어어어어는 진짜아아아아아
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-04-07">2026.04.07</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.07 사진 모음 (가로 스크롤)">
-      <img src="img/img_260408_fac.jpeg" loading="lazy" decoding="async" alt="2026.04.07 일기 사진 1">
-    </div>
-    <p>
-      설비기초 실습 연습, 3시간 동안 파이프 도면을 완성하지 못했다.<br>
-      알아둘 점<br>
-      1. 엘보 이경티 사이 파이프 길이 + 3mm<br>
-      2. 파이프 양 끝 한 쪽은 나사산 2개 남기고 다른 한 쪽은 3개 남길 것
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-04-07">2026.04.07</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.07 사진 모음 (가로 스크롤)">
-      <img src="img/img_260407_fac.jpeg" loading="lazy" decoding="async" alt="2026.04.07 일기 사진 1">
-      <img src="img/img_260407_fac2.jpeg" loading="lazy" decoding="async" alt="2026.04.07 일기 사진 2">
-    </div>
-    <p>
-      설비기초 실습 시간, 2시간 제한 시간 안에 엘보와 이경티가 결합된 파이프를 만들지 못했다.<br>
-      오후 1시간 공강 때 한 번 더 만들었으나 어째서인지 치수가 잘 안 맞는다.<br>
-      명심해야 할 점<br>
-      1. 밀링 선반 마다 나사 구경 차이가 있으므로 정사이즈보다 살짝 더 올려서 나사산을 깎을 것<br>
-      2. 엘보와 이경티 내경 차이가 있을 수 있으므로 최대한 맞는 배관 부속을 찾을 것<br>
-      3. 기칠운삼
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-04-06">2026.04.06</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.06 사진 모음 (가로 스크롤)">
-      <img src="img/img_260406_weld.jpeg" loading="lazy" decoding="async" alt="2026.04.06 일기 사진 1">
-      <img src="img/img_260406_elect.jpeg" loading="lazy" decoding="async" alt="2026.04.06 일기 사진 2">
-    </div>
-    <p>
-      용접: 조질게~
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-04-01">2026.04.01</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.04.01 사진 모음 (가로 스크롤)">
-      <img src="img/img_260401_poly.jpeg" loading="lazy" decoding="async" alt="2026.04.01 일기 사진 1">
-    </div>
-    <p>
-      마지막 참인 폴리텍 시간, A4 용지로 롤러코스터를 만들었다.<br>
-      탁구공이 책상까지 내려오는데 6초 남짓. 야매로 만들었지만 집단 지성의 힘을 보았다.
-    </p>
-  </article></div><div class="dp-month">2026 / 03</div><div class="dp-entries"><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-03-31">2026.03.31</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.31 사진 모음 (가로 스크롤)">
-      <img src="img/img_260331_prct.jpeg" loading="lazy" decoding="async" alt="2026.03.31 일기 사진 1">
-    </div>
-    <p>
-      설비 실습 시간 25A 3/4/5/6cm 나사산 파이프를 만들었다.<br>
-      엘보 이음쇠에 잘 들어갔다. 실습 시간은 생각하고 행동하는 것이 중요.
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-03-30">2026.03.30</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.30 사진 모음 (가로 스크롤)">
-      <img src="img/img_260330_weld1.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 1">
-      <img src="img/img_260330_weld2.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 2">
-      <img src="img/img_260330_weld3.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 3">
-      <img src="img/img_260330_weld4.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 4">
-      <img src="img/img_260330_weld5.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 5">
-      <img src="img/img_260330_elct.jpeg" loading="lazy" decoding="async" alt="2026.03.30 일기 사진 6">
-    </div>
-    <p>
-      "수많은 작은 유향 방울들이 동일한 제단 위에 떨어진다. 어떤 것들은 거기에 먼저 도착하고, 어떤 것들은 나중에<br>
-      도착하지만, 차이는 없다." -마르쿠스 아우렐리우스-
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-03-23">2026.03.23</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.23 사진 모음 (가로 스크롤)">
-      <img src="img/img_260323_weld.jpeg" loading="lazy" decoding="async" alt="2026.03.23 일기 사진 1">
-      <img src="img/img_260323_elect.jpeg" loading="lazy" decoding="async" alt="2026.03.23 일기 사진 2">
-    </div>
-    <p>
-      두번째 아크 용접 실습 생각보다 섬세한 손놀림이 필요해서 쉽지 않다.<br>
-      하지만 계속 연습하다 보면 때깔 좀 나겠지. 전기 제어 실습도 집중해서 수업에 참여했다.<br>
-      그리고 오늘 아침에 학교 식당에서 교수님이 수줍게 인사하셔서 너무 귀여우셨다는ㅋㅋㅋ
-    </p>
-  </article><article class="dp-glass dp-entry post">
-    <img src="img/img_CAD.jpeg" class="post-image" loading="lazy" decoding="async" alt="2026.03.20 일기 사진 1">
-    <div class="post-content">
-    <h2><time datetime="2026-03-20">2026.03.20</time></h2>
-    <p>
-      오늘 CAD 실습 시간에 오토캐드 첫 과제를 했다. 아직까지 할 만한 듯
-    </p>
-    </div>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-03-19">2026.03.19</time></h2>
-    <p>
-      오늘 동아리 활동 신청하려 했으나 학과장교수님의 현장 실습에 참여 예정이라<br>
-      자격증 공부 + 동아리 활동까지 하기엔 집중이 분산될 것 같아 신청하지 않았다.<br>
-      그리고 한양대학교 졸업생 평균 자격증 취득 개수가 기사 자격증 3개라는 말에 전의를 상실했다.<br>
-      난 어떻게 살아가야하나?
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-03-16">2026.03.16</time></h2>
-    <p>
-      오늘 처음 용접 실습을 했다. 아크 발생시키는게 너무 빡세다.<br>
-      남들은 아크 잘 일으키는데 나만 안 됨. 그래도 용접 실습이 제일 흥미롭다.
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-03-08">2026.03.08</time></h2>
-    <div class="image-slider" tabindex="0" role="region" aria-label="2026.03.08 사진 모음 (가로 스크롤)">
-      <img src="img/img_DQP.jpeg" loading="lazy" decoding="async" alt="2026.03.08 일기 사진 1">
-      <img src="img/img_DQP2.jpeg" loading="lazy" decoding="async" alt="2026.03.08 일기 사진 2">
-    </div>
+    <!-- [7. 자동 동작] 아래는 JavaScript입니다. 일기 내용 수정 시에는 건드리지 않아도 됩니다.
+       외부 파일 없이 이 HTML과 style.css 두 파일만으로 동작하도록 여기에 넣었습니다. -->
+  <script>
+// [설정] 애니메이션 강도: 숫자만 수정하세요.
+// menuDuration: 물방울 이동 시간(ms). 클수록 느려집니다.
+// cardTilt: 카드 최대 기울기(도). 기본 4도, 0이면 기울지 않습니다.
+// 카드 확대/떠오름은 style.css의 [카드 효과 설정]에서 수정하세요.
+const EFFECTS = { menuDuration: 620, cardTilt: 4 };
 
-    <p>
-      더블쿼터파운더치즈 with BBQ
-    </p>
-  </article><article class="dp-glass dp-entry post">
-    <img src="img/img_YAK502G.jpeg" class="post-image" loading="lazy" decoding="async" alt="2026.03.07 일기 사진 1">
-    <div class="post-content">
-    <h2><time datetime="2026-03-07">2026.03.07</time></h2>
-    <p>
-      오늘 용접 실습에 실습에 의한 실습을 위해 산 작업복과 안전화가 왔다.<br>
-      자 이제 시작이야 내 꿈을 위한 여행 피카츄
-    </p>
-    </div>
-  </article></div><div class="dp-month">2026 / 02</div><div class="dp-entries"><article class="dp-glass dp-entry post">
-    <img src="img/img_0012.jpeg" class="post-image" loading="lazy" decoding="async" alt="2026.02.15 일기 사진 1">
-    <div class="post-content">
-      <h2><time datetime="2026-02-15">2026.02.15</time></h2>
-      <p>
-        하 씨발... 개인 사이트 만들기 졸라 빡세네
-      </p>
-    </div>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-02-13">2026.02.13</time></h2>
-    <p>
-      앞으로 어떻게 해야할지 막막하다...
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-02-12">2026.02.12</time></h2>
-    <p>
-      오늘은 나만의 블로그를 꾸미기 시작했다.
-    </p>
-  </article><article class="dp-glass dp-entry">
-    <h2><time datetime="2026-02-11">2026.02.11</time></h2>
-    <p>
-      GitHub Pages 404를 해결했다. 존1나게 뿌듯하다.
-    </p>
-  </article></div></div>
-  </section>
-  <section class="page-section" data-view="about" hidden><div class="dp-heading"><span class="dp-kicker">A BIT ABOUT ME</span><h1>Hello, I’m Daeho.</h1></div><div class="dp-glass"><h3>배우고 만드는 일상을 기록합니다.</h3><p>용접, 설비, 전기제어 실습의 시행착오부터<br>검도와 소소한 일상까지.</p><div class="dp-pills"><span>용접 · 설비</span><span>자격증 준비</span><span>검도</span></div></div></section>
-  </main>
-  <footer><span>© 2026 Daeho</span><span>하루하루, 차곡차곡.</span></footer>
-</div>
-<script>
+// [기능 1] 화면 전환: data-page와 data-view의 home / diary / about을 연결합니다.
+// 주소의 #diary 등으로 직접 접속할 수 있고 브라우저 뒤로 가기도 지원합니다.
+// 메뉴 글자만 바꾸려면 위쪽 HTML을 수정하세요. 아래 연결 코드는 유지하세요.
+
 (function(){
  const root=document.getElementById('daeho-preview');
  const pages=['home','diary','about'];
@@ -348,6 +777,8 @@
  show();
 })();
 
+// [기능 2] 물방울 메뉴: 선택된 버튼까지 늘어났다가 안착합니다.
+// 빠르게 연속 클릭하거나 창 크기를 바꾸어도 선택 위치를 다시 맞춥니다.
 (function(){
  const root=document.getElementById('daeho-preview');
  const nav=root.querySelector('.dp-links');
@@ -381,7 +812,7 @@
        {transform:'translate('+middle+'px,'+(y+height*0.055)+'px)',width:stretched+'px',height:height*0.89+'px',offset:0.42},
        {transform:'translate('+(x+width*0.035)+'px,'+(y-height*0.025)+'px)',width:width*0.93+'px',height:height*1.05+'px',offset:0.77},
        {transform:'translate('+x+'px,'+y+'px)',width:width+'px',height:height+'px',offset:1}
-     ],{duration:620,easing:'cubic-bezier(.22,.65,.3,1)'});
+     ],{duration:EFFECTS.menuDuration,easing:'cubic-bezier(.22,.65,.3,1)'});
    }
    initialized=true;
    nav.classList.add('dp-liquid-ready');
@@ -395,6 +826,83 @@
  if(document.fonts) document.fonts.ready.then(()=>move(false));
 })();
 
-</script>
+
+// [기능 3] 카드만 확대·기울이기: 커서 위치를 계산해 CSS로 전달합니다.
+// 상단 메뉴에는 적용하지 않습니다. 터치/동작 줄이기 환경에서는 생략합니다.
+
+(function(){
+ const root=document.getElementById('daeho-preview');
+ const fine=matchMedia('(any-hover: hover) and (any-pointer: fine)');
+ const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+ const cards=Array.from(root.querySelectorAll('.dp-glass'));
+ let active=null, bounds=null, frame=0, cursorX=0, cursorY=0;
+ const clamp=value=>Math.max(-1,Math.min(1,value));
+ function reset(){
+  if(frame) cancelAnimationFrame(frame);
+  frame=0;
+  if(active){
+   active.classList.remove('dp-hovering');
+   active.style.removeProperty('--tilt-x');
+   active.style.removeProperty('--tilt-y');
+  }
+  active=null;bounds=null;
+ }
+ function paint(){
+  frame=0;
+  if(!active||!bounds) return;
+  const x=clamp((cursorX-bounds.left)/bounds.width*2-1);
+  const y=clamp((cursorY-bounds.top)/bounds.height*2-1);
+  active.style.setProperty('--tilt-x',(-y*EFFECTS.cardTilt).toFixed(2)+'deg');
+  active.style.setProperty('--tilt-y',(x*EFFECTS.cardTilt).toFixed(2)+'deg');
+  active.style.setProperty('--shine-x',((x+1)*50).toFixed(1)+'%');
+  active.style.setProperty('--shine-y',((y+1)*50).toFixed(1)+'%');
+ }
+ cards.forEach(card=>{
+  card.addEventListener('pointerenter',event=>{
+   if(!fine.matches||reduced.matches||event.pointerType==='touch') return;
+   reset();
+   active=card;bounds=card.getBoundingClientRect();
+   cursorX=event.clientX;cursorY=event.clientY;
+   paint();card.classList.add('dp-hovering');
+  });
+  card.addEventListener('pointermove',event=>{
+   if(active!==card) return;
+   cursorX=event.clientX;cursorY=event.clientY;
+   if(!frame) frame=requestAnimationFrame(paint);
+  });
+  card.addEventListener('pointerleave',()=>{if(active===card)reset();});
+  card.addEventListener('pointercancel',()=>{if(active===card)reset();});
+ });
+ root.addEventListener('diary:navigate',reset);
+ addEventListener('blur',reset);
+ addEventListener('resize',reset);
+ addEventListener('scroll',reset,{passive:true,capture:true});
+ fine.addEventListener('change',reset);
+ reduced.addEventListener('change',reset);
+})();
+
+// [기능 4] 메뉴 빛 반사: 커서 위치를 CSS로 전달합니다.
+// 선택되지 않은 메뉴의 반사는 CSS에서 차단합니다. 메뉴는 기울지 않습니다.
+
+(function(){
+ const root=document.getElementById('daeho-preview');
+ const buttons=Array.from(root.querySelectorAll('.dp-links button'));
+ function clear(){buttons.forEach(button=>button.classList.remove('dp-lit'));}
+ buttons.forEach(button=>{
+  function shine(event){
+   if(event.pointerType==='touch') return;
+   const bounds=button.getBoundingClientRect();
+   button.style.setProperty('--menu-light-x',Math.max(0,Math.min(100,(event.clientX-bounds.left)/bounds.width*100))+'%');
+   button.style.setProperty('--menu-light-y',Math.max(0,Math.min(100,(event.clientY-bounds.top)/bounds.height*100))+'%');
+   button.classList.add('dp-lit');
+  }
+  button.addEventListener('pointerenter',shine);
+  button.addEventListener('pointermove',shine);
+  button.addEventListener('pointerleave',()=>button.classList.remove('dp-lit'));
+  button.addEventListener('pointercancel',clear);
+ });
+ addEventListener('blur',clear);
+})();
+  </script>
 </body>
 </html>
