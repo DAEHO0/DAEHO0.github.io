@@ -1,82 +1,575 @@
-#daeho-preview { --diary-ink:#2e354b; --diary-muted:#667089; --diary-radius:26px; color:var(--diary-ink); font:14px/1.7 -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif; background:radial-gradient(ellipse at 0% 10%,#d9d1f2,transparent 55%),radial-gradient(ellipse at 100% 55%,#c5e5ed,transparent 55%),linear-gradient(140deg,#eef0f9,#e8e7f4 70%,#f1deeb); padding:26px 36px 22px; border-radius:18px; color-scheme:light; }
-#daeho-preview * { box-sizing:border-box; }
-#daeho-preview button { font:inherit; color:inherit; cursor:pointer; }
-#daeho-preview .dp-nav { display:flex; justify-content:space-between; gap:14px; align-items:center; padding:10px 14px 10px 20px; border:1px solid #ffffffdc; background:#ffffff55; box-shadow:0 8px 25px #5362850b,inset 0 1px 0 white; border-radius:24px; backdrop-filter:blur(20px); }
-#daeho-preview .dp-brand { font-family:Georgia,serif; font-size:19px; }
-#daeho-preview .dp-links { display:flex; gap:4px; }
-#daeho-preview .dp-links button { border:0; border-radius:16px; padding:8px 17px; background:transparent; font-size:12px; }
-#daeho-preview .dp-links button[aria-pressed=true] { background:#ffffffe0; box-shadow:0 3px 9px #48507012; }
-#daeho-preview .dp-heading { margin:38px 0 25px; }
-#daeho-preview .dp-kicker { font-size:10px; letter-spacing:2px; color:var(--diary-muted); }
-#daeho-preview h1 { font:400 43px/1.2 Georgia,serif; letter-spacing:-1.6px; margin:10px 0; color:var(--diary-ink); }
-#daeho-preview p { margin:8px 0 0; }
-#daeho-preview .dp-sub { font-size:13px; color:var(--diary-muted); }
-#daeho-preview .dp-grid { display:grid; grid-template-columns:1.45fr 1fr; gap:16px; }
-#daeho-preview .dp-glass { padding:24px; border-radius:var(--diary-radius); border:1px solid #ffffffee; background:linear-gradient(130deg,#ffffffab,#ffffff52); box-shadow:0 15px 35px -24px #404e7870,inset 0 1px 0 white,inset 0 -1px 0 #ffffff77; backdrop-filter:blur(20px); }
-#daeho-preview .dp-feature { display:flex; flex-direction:column; min-height:224px; }
-#daeho-preview h2 { font-size:23px; font-weight:500; line-height:1.6; letter-spacing:-.7px; margin:20px 0 10px; }
-#daeho-preview h3 { font-size:18px; font-weight:500; margin:10px 0; }
-#daeho-preview .dp-date { font-size:11px; color:var(--diary-muted); letter-spacing:1px; }
-#daeho-preview .dp-action { border:0; background:transparent; padding:10px 0 0; text-align:left; font-size:12px; margin-top:auto; align-self:flex-start; }
-#daeho-preview .dp-monogram { width:45px; height:45px; display:grid; place-items:center; border:1px solid white; background:linear-gradient(145deg,#ffffffcc,#cfc8e980); border-radius:16px; font:italic 28px Georgia,serif; margin-bottom:13px; }
-#daeho-preview .dp-small { font-size:12px; color:var(--diary-muted); }
-#daeho-preview .dp-pills { display:flex; flex-wrap:wrap; gap:7px; margin-top:15px; }
-#daeho-preview .dp-pills span { background:#ffffff88; padding:4px 10px; border-radius:12px; font-size:11px; }
-#daeho-preview .dp-bottom { grid-column:1/-1; display:flex; align-items:center; justify-content:space-between; gap:16px; padding-top:20px; padding-bottom:20px; }
-#daeho-preview .dp-bottom h3 { margin:0; }
-#daeho-preview .dp-bottom button { margin:0; white-space:nowrap; }
-#daeho-preview .dp-timeline { display:grid; grid-template-columns:90px 1fr; gap:18px; }
-#daeho-preview .dp-month { padding-top:20px; color:var(--diary-muted); font-size:12px; }
-#daeho-preview .dp-entries { border-left:1px solid #b2acc9; padding-left:20px; display:grid; gap:14px; }
-#daeho-preview .dp-entry { position:relative; }
-#daeho-preview .dp-entry:before { content:''; position:absolute; width:7px; height:7px; border:3px solid #e6e5f4; background:#9384b4; border-radius:50%; left:-27px; top:24px; box-sizing:content-box; }
-#daeho-preview summary { cursor:pointer; font-size:16px; margin-top:6px; }
-#daeho-preview details p { font-size:13px; color:var(--diary-muted); }
-#daeho-preview footer { display:flex; justify-content:space-between; gap:10px; font-size:10px; color:var(--diary-muted); margin-top:26px; letter-spacing:.4px; }
-#daeho-preview [hidden] { display:none!important; }
-@media(max-width:560px) { #daeho-preview { padding:18px; } #daeho-preview .dp-nav { flex-wrap:wrap; padding:12px; } #daeho-preview .dp-links button { padding:8px 12px; } #daeho-preview .dp-grid { grid-template-columns:1fr; } #daeho-preview h1 { font-size:35px; } #daeho-preview .dp-timeline { grid-template-columns:1fr; gap:8px; } #daeho-preview .dp-bottom { flex-wrap:wrap; } }
-
-
-#daeho-preview .dp-links { position:relative; isolation:isolate; }
-#daeho-preview .dp-links button { position:relative; z-index:1; min-height:40px; }
-#daeho-preview .dp-links.dp-liquid-ready button[aria-pressed=true] { background:transparent; box-shadow:none; }
-#daeho-preview .dp-drop {
- position:absolute; left:0; top:0; z-index:0; pointer-events:none;
- border-radius:999px;
- border:1px solid #fffffff2;
- background:linear-gradient(145deg,#ffffffe8 0%,#ffffff60 48%,#d9d5f15c 75%,#ffffffc4 100%);
- box-shadow:inset 0 2px 3px #fffffffa,inset 0 -2px 4px #a49bc52b,0 3px 8px #635f8a20;
- backdrop-filter:blur(12px) saturate(160%);
- -webkit-backdrop-filter:blur(12px) saturate(160%);
- transform-origin:center;
+/*
+  STYLE.CSS 수정 안내
+  색상은 #daeho-preview의 --diary-ink(글자), --diary-muted(보조 글자)를 수정하세요.
+  카드 모서리는 --diary-radius, 배경은 #daeho-preview의 background를 수정하세요.
+  모바일 전용 값은 @media(max-width:560px) 안에 있습니다.
+  같은 선택자가 여러 번 있으면 뒤에 나온 값이 우선합니다. 아래쪽은 기능별 추가 규칙입니다.
+*/
+/* [카드 효과 설정] -5px은 위로 5px, 1.015는 원래 크기의 101.5%입니다. */
+#daeho-preview {
+  --card-lift: -5px;
+  --card-scale: 1.015;
 }
-#daeho-preview .dp-drop::after { content:''; position:absolute; left:18%; right:18%; top:3px; height:5px; border-radius:50%; background:linear-gradient(90deg,transparent,#ffffffef,transparent); }
-@media(pointer:coarse) { #daeho-preview .dp-links button { min-height:44px; } }
 
-/* Standalone layout and full diary archive. */
-html { scroll-behavior:smooth; }
-body { margin:0; background:#e8e7f4; }
-#daeho-preview { min-height:100vh; border-radius:0; padding:28px max(20px, calc((100% - 1000px) / 2)) 24px; overflow-wrap:anywhere; }
-#daeho-preview .page-section { max-width:880px; margin:0 auto; }
-#daeho-preview .dp-heading { margin-top:55px; }
-#daeho-preview footer { max-width:1000px; margin:36px auto 0; }
-#daeho-preview article h2 { margin:0 0 15px; font-size:12px; letter-spacing:1px; color:var(--diary-muted); }
-#daeho-preview article p { font-size:14px; line-height:1.95; word-break:keep-all; overflow-wrap:anywhere; }
-#daeho-preview .dp-entries { min-width:0; }
-#daeho-preview .image-slider { display:flex; overflow-x:auto; gap:12px; margin:12px 0; padding-bottom:10px; scroll-snap-type:x mandatory; overscroll-behavior-x:contain; scrollbar-width:thin; scrollbar-color:#9c9eba66 transparent; }
-#daeho-preview .image-slider img { height:290px; max-width:100%; width:auto; object-fit:contain; flex-shrink:0; border-radius:16px; scroll-snap-align:start; }
-#daeho-preview .post-image { width:100%; height:auto; display:block; border-radius:16px; margin-bottom:18px; }
-#daeho-preview .dp-links button { min-height:44px; }
-#daeho-preview :focus-visible { outline:3px solid #7060b4; outline-offset:4px; }
-#daeho-preview .skip-link { position:absolute; left:20px; top:-100px; padding:10px 15px; background:white; color:#29334b; border-radius:12px; z-index:10; }
-#daeho-preview .skip-link:focus { top:10px; }
+/* [1. 기본 배경·글꼴·상단 메뉴] */
+#daeho-preview {
+  --diary-ink:#2e354b;
+  --diary-muted:#667089;
+  --diary-radius:26px;
+  color:var(--diary-ink);
+  font:14px/1.7 -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;
+  background:radial-gradient(ellipse at 0% 10%,#d9d1f2,transparent 55%),radial-gradient(ellipse at 100% 55%,#c5e5ed,transparent 55%),linear-gradient(140deg,#eef0f9,#e8e7f4 70%,#f1deeb);
+  padding:26px 36px 22px;
+  border-radius:18px;
+  color-scheme:light;
+}
+
+#daeho-preview * {
+  box-sizing:border-box;
+}
+
+#daeho-preview button {
+  font:inherit;
+  color:inherit;
+  cursor:pointer;
+}
+
+#daeho-preview .dp-nav {
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  align-items:center;
+  padding:10px 14px 10px 20px;
+  border:1px solid #ffffffdc;
+  background:#ffffff55;
+  box-shadow:0 8px 25px #5362850b,inset 0 1px 0 white;
+  border-radius:24px;
+  backdrop-filter:blur(20px);
+}
+
+#daeho-preview .dp-brand {
+  font-family:Georgia,serif;
+  font-size:19px;
+}
+
+#daeho-preview .dp-links {
+  display:flex;
+  gap:4px;
+}
+
+#daeho-preview .dp-links button {
+  border:0;
+  border-radius:16px;
+  padding:8px 17px;
+  background:transparent;
+  font-size:12px;
+}
+
+#daeho-preview .dp-links button[aria-pressed=true] {
+  background:#ffffffe0;
+  box-shadow:0 3px 9px #48507012;
+}
+
+#daeho-preview .dp-heading {
+  margin:38px 0 25px;
+}
+
+#daeho-preview .dp-kicker {
+  font-size:10px;
+  letter-spacing:2px;
+  color:var(--diary-muted);
+}
+
+#daeho-preview h1 {
+  font:400 43px/1.2 Georgia,serif;
+  letter-spacing:-1.6px;
+  margin:10px 0;
+  color:var(--diary-ink);
+}
+
+#daeho-preview p {
+  margin:8px 0 0;
+}
+
+#daeho-preview .dp-sub {
+  font-size:13px;
+  color:var(--diary-muted);
+}
+
+/* [2. Home 카드 배치] grid-template-columns로 좌우 카드 비율을 조절합니다. */
+#daeho-preview .dp-grid {
+  display:grid;
+  grid-template-columns:1.45fr 1fr;
+  gap:16px;
+}
+
+#daeho-preview .dp-glass {
+  padding:24px;
+  border-radius:var(--diary-radius);
+  border:1px solid #ffffffee;
+  background:linear-gradient(130deg,#ffffffab,#ffffff52);
+  box-shadow:0 15px 35px -24px #404e7870,inset 0 1px 0 white,inset 0 -1px 0 #ffffff77;
+  backdrop-filter:blur(20px);
+}
+
+#daeho-preview .dp-feature {
+  display:flex;
+  flex-direction:column;
+  min-height:224px;
+}
+
+#daeho-preview h2 {
+  font-size:23px;
+  font-weight:500;
+  line-height:1.6;
+  letter-spacing:-.7px;
+  margin:20px 0 10px;
+}
+
+#daeho-preview h3 {
+  font-size:18px;
+  font-weight:500;
+  margin:10px 0;
+}
+
+#daeho-preview .dp-date {
+  font-size:11px;
+  color:var(--diary-muted);
+  letter-spacing:1px;
+}
+
+#daeho-preview .dp-action {
+  border:0;
+  background:transparent;
+  padding:10px 0 0;
+  text-align:left;
+  font-size:12px;
+  margin-top:auto;
+  align-self:flex-start;
+}
+
+#daeho-preview .dp-monogram {
+  width:45px;
+  height:45px;
+  display:grid;
+  place-items:center;
+  border:1px solid white;
+  background:linear-gradient(145deg,#ffffffcc,#cfc8e980);
+  border-radius:16px;
+  font:italic 28px Georgia,serif;
+  margin-bottom:13px;
+}
+
+#daeho-preview .dp-small {
+  font-size:12px;
+  color:var(--diary-muted);
+}
+
+#daeho-preview .dp-pills {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:15px;
+}
+
+#daeho-preview .dp-pills span {
+  background:#ffffff88;
+  padding:4px 10px;
+  border-radius:12px;
+  font-size:11px;
+}
+
+#daeho-preview .dp-bottom {
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding-top:20px;
+  padding-bottom:20px;
+}
+
+#daeho-preview .dp-bottom h3 {
+  margin:0;
+}
+
+#daeho-preview .dp-bottom button {
+  margin:0;
+  white-space:nowrap;
+}
+
+/* [3. Diary 타임라인] 월 표시와 일기 목록의 너비를 조절합니다. */
+#daeho-preview .dp-timeline {
+  display:grid;
+  grid-template-columns:90px 1fr;
+  gap:18px;
+}
+
+#daeho-preview .dp-month {
+  padding-top:20px;
+  color:var(--diary-muted);
+  font-size:12px;
+}
+
+#daeho-preview .dp-entries {
+  border-left:1px solid #b2acc9;
+  padding-left:20px;
+  display:grid;
+  gap:14px;
+}
+
+#daeho-preview .dp-entry {
+  position:relative;
+}
+
+#daeho-preview .dp-entry:before {
+  content:'';
+  position:absolute;
+  width:7px;
+  height:7px;
+  border:3px solid #e6e5f4;
+  background:#9384b4;
+  border-radius:50%;
+  left:-27px;
+  top:24px;
+  box-sizing:content-box;
+}
+
+#daeho-preview summary {
+  cursor:pointer;
+  font-size:16px;
+  margin-top:6px;
+}
+
+#daeho-preview details p {
+  font-size:13px;
+  color:var(--diary-muted);
+}
+
+#daeho-preview footer {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  font-size:10px;
+  color:var(--diary-muted);
+  margin-top:26px;
+  letter-spacing:.4px;
+}
+
+#daeho-preview [hidden] {
+  display:none!important;
+}
+
 @media(max-width:560px) {
- #daeho-preview { padding:18px 16px; }
- #daeho-preview .dp-heading { margin-top:36px; }
- #daeho-preview .image-slider img { height:220px; }
- #daeho-preview .dp-entries { margin-left:6px; padding-left:17px; }
- #daeho-preview .dp-entry:before { left:-24px; }
+  #daeho-preview {
+    padding:18px;
+  }
+
+  #daeho-preview .dp-nav {
+    flex-wrap:wrap;
+    padding:12px;
+  }
+
+  #daeho-preview .dp-links button {
+    padding:8px 12px;
+  }
+
+  #daeho-preview .dp-grid {
+    grid-template-columns:1fr;
+  }
+
+  #daeho-preview h1 {
+    font-size:35px;
+  }
+
+  #daeho-preview .dp-timeline {
+    grid-template-columns:1fr;
+    gap:8px;
+  }
+
+  #daeho-preview .dp-bottom {
+    flex-wrap:wrap;
+  }
+
 }
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) { #daeho-preview .dp-glass, #daeho-preview .dp-nav { background:#f5f5fb; } }
-@media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }
-@media(prefers-reduced-transparency:reduce) { #daeho-preview .dp-glass, #daeho-preview .dp-nav { background:#f5f5fb; backdrop-filter:none; } }
+
+#daeho-preview .dp-links {
+  position:relative;
+  isolation:isolate;
+}
+
+#daeho-preview .dp-links button {
+  position:relative;
+  z-index:1;
+  min-height:40px;
+}
+
+#daeho-preview .dp-links.dp-liquid-ready button[aria-pressed=true] {
+  background:transparent;
+  box-shadow:none;
+}
+
+/* [5. 물방울 메뉴] 물방울의 색, 테두리, 그림자입니다. */
+#daeho-preview .dp-drop {
+  position:absolute;
+  left:0;
+  top:0;
+  z-index:0;
+  pointer-events:none;
+  border-radius:999px;
+  border:1px solid #fffffff2;
+  background:linear-gradient(145deg,#ffffffe8 0%,#ffffff60 48%,#d9d5f15c 75%,#ffffffc4 100%);
+  box-shadow:inset 0 2px 3px #fffffffa,inset 0 -2px 4px #a49bc52b,0 3px 8px #635f8a20;
+  backdrop-filter:blur(12px) saturate(160%);
+  -webkit-backdrop-filter:blur(12px) saturate(160%);
+  transform-origin:center;
+}
+
+#daeho-preview .dp-drop::after {
+  content:'';
+  position:absolute;
+  left:18%;
+  right:18%;
+  top:3px;
+  height:5px;
+  border-radius:50%;
+  background:linear-gradient(90deg,transparent,#ffffffef,transparent);
+}
+
+@media(pointer:coarse) {
+  #daeho-preview .dp-links button {
+    min-height:44px;
+  }
+
+}
+
+/* [4. 전체 페이지·사진] 사진 높이는 .image-slider img의 height에서 수정합니다. */
+/* Standalone layout and full diary archive. */
+html {
+  scroll-behavior:smooth;
+}
+
+body {
+  margin:0;
+  background:#e8e7f4;
+}
+
+#daeho-preview {
+  min-height:100vh;
+  border-radius:0;
+  padding:28px max(20px, calc((100% - 1000px) / 2)) 24px;
+  overflow-wrap:anywhere;
+}
+
+#daeho-preview .page-section {
+  max-width:880px;
+  margin:0 auto;
+}
+
+#daeho-preview .dp-heading {
+  margin-top:55px;
+}
+
+#daeho-preview footer {
+  max-width:1000px;
+  margin:36px auto 0;
+}
+
+#daeho-preview article h2 {
+  margin:0 0 15px;
+  font-size:12px;
+  letter-spacing:1px;
+  color:var(--diary-muted);
+}
+
+#daeho-preview article p {
+  font-size:14px;
+  line-height:1.95;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+}
+
+#daeho-preview .dp-entries {
+  min-width:0;
+}
+
+#daeho-preview .image-slider {
+  display:flex;
+  overflow-x:auto;
+  gap:12px;
+  margin:12px 0;
+  padding-bottom:10px;
+  scroll-snap-type:x mandatory;
+  overscroll-behavior-x:contain;
+  scrollbar-width:thin;
+  scrollbar-color:#9c9eba66 transparent;
+}
+
+#daeho-preview .image-slider img {
+  height:290px;
+  max-width:100%;
+  width:auto;
+  object-fit:contain;
+  flex-shrink:0;
+  border-radius:16px;
+  scroll-snap-align:start;
+}
+
+#daeho-preview .post-image {
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:16px;
+  margin-bottom:18px;
+}
+
+#daeho-preview .dp-links button {
+  min-height:44px;
+}
+
+#daeho-preview :focus-visible {
+  outline:3px solid #7060b4;
+  outline-offset:4px;
+}
+
+#daeho-preview .skip-link {
+  position:absolute;
+  left:20px;
+  top:-100px;
+  padding:10px 15px;
+  background:white;
+  color:#29334b;
+  border-radius:12px;
+  z-index:10;
+}
+
+#daeho-preview .skip-link:focus {
+  top:10px;
+}
+
+@media(max-width:560px) {
+  #daeho-preview {
+    padding:18px 16px;
+  }
+
+  #daeho-preview .dp-heading {
+    margin-top:36px;
+  }
+
+  #daeho-preview .image-slider img {
+    height:220px;
+  }
+
+  #daeho-preview .dp-entries {
+    margin-left:6px;
+    padding-left:17px;
+  }
+
+  #daeho-preview .dp-entry:before {
+    left:-24px;
+  }
+
+}
+
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))) {
+  #daeho-preview .dp-glass, #daeho-preview .dp-nav {
+    background:#f5f5fb;
+  }
+
+}
+
+@media(prefers-reduced-motion:reduce) {
+  html {
+    scroll-behavior:auto;
+  }
+
+}
+
+@media(prefers-reduced-transparency:reduce) {
+  #daeho-preview .dp-glass, #daeho-preview .dp-nav {
+    background:#f5f5fb;
+    backdrop-filter:none;
+  }
+
+}
+
+/* [8. 카드 효과] 카드 위에 커서를 올렸을 때 확대, 기울기, 반사가 적용됩니다. */
+#daeho-preview .dp-glass {
+  position:relative;
+  transform:perspective(1000px) translateY(0) rotateX(0deg) rotateY(0deg) scale(1);
+  transition:transform 420ms cubic-bezier(.2,.75,.25,1),box-shadow 350ms ease;
+}
+
+#daeho-preview .dp-glass::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:radial-gradient(ellipse at var(--shine-x,50%) var(--shine-y,50%),#ffffff70,transparent 65%);
+  opacity:0;
+  transition:opacity 300ms ease;
+}
+
+#daeho-preview .dp-glass.dp-hovering {
+  z-index:2;
+  transform:perspective(1000px) translateY(var(--card-lift)) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) scale(var(--card-scale));
+  box-shadow:0 24px 40px -20px #4f467b45,0 7px 15px -10px #50577930,inset 0 1px 0 #fff,inset 0 -1px 0 #ffffff99;
+  transition:transform 140ms ease-out,box-shadow 350ms ease;
+}
+
+#daeho-preview .dp-glass.dp-hovering::after {
+  opacity:1;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  #daeho-preview .dp-glass,#daeho-preview .dp-glass.dp-hovering {
+    transform:none;
+    transition:none;
+  }
+
+  #daeho-preview .dp-glass::after {
+    transition:none;
+  }
+
+}
+
+#daeho-preview .dp-links button {
+  transform:none;
+}
+
+/* [9. 메뉴 반사] 기울기 없이 커서 위치에 빛만 표시합니다. */
+#daeho-preview .dp-links button::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:radial-gradient(ellipse at var(--menu-light-x,50%) var(--menu-light-y,50%),#ffffffd9 0%,#ffffff60 28%,transparent 75%);
+  opacity:0;
+  transition:opacity 180ms ease;
+  mix-blend-mode:soft-light;
+}
+
+#daeho-preview .dp-links button.dp-lit::after {
+  opacity:1;
+}
+
+@media(prefers-reduced-motion:reduce) {
+  #daeho-preview .dp-links button::after {
+    transition:none;
+  }
+
+}
+
+/* [10. 미선택 메뉴] 빛과 그림자를 끕니다. 최종 시안 유지용입니다. */
+#daeho-preview .dp-links button:not([aria-pressed="true"]),
+#daeho-preview .dp-links button:not([aria-pressed="true"]):hover {
+  background:transparent;
+  box-shadow:none;
+}
+
+#daeho-preview .dp-links button:not([aria-pressed="true"])::after {
+  opacity:0;
+  transition:none;
+}
